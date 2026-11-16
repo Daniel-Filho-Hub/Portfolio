@@ -1,0 +1,485 @@
+/* ===== PALETAS =====
+   Tema escuro é o padrão (:root).
+   Tema claro é ativado pelo atributo data-bs-theme="light" no <html>.
+   Para mudar uma cor, altere só aqui. */
+:root {
+  --bs-body-font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Tema escuro */
+  --bg: #171b22;            /* chumbo profundo, fundo principal */
+  --bg-alt: #222831;        /* grafite, seções alternadas */
+  --card: #222831;          /* grafite, cards */
+  --borda: #303946;         /* cinza ardósia, bordas */
+  --texto: #f1f3f5;         /* branco gelo, textos principais */
+  --texto-suave: #8f9baa;   /* cinza azulado, textos secundários */
+  --destaque: #82a6ca;      /* azul claro, links e hover */
+  --identidade: #5b83a8;    /* azul aço, botões */
+  --prata: #c5cbd3;         /* prata, tags */
+  --tag-bg: #303946;
+  --btn-texto: #ffffff;
+  --btn-hover: #82a6ca;
+  --btn-hover-texto: #171b22;
+  --sombra: rgba(0, 0, 0, 0.35);
+  --filtro-menu: invert(1);
+  --nav-rgb: 23, 27, 34;
+}
+
+/* Tema claro (suas cores anteriores) */
+html[data-bs-theme="light"] {
+  --bg: #ffffff;
+  --bg-alt: #f5f6f8;
+  --card: #ffffff;
+  --borda: #d1d5db;
+  --texto: #1f2328;
+  --texto-suave: #5b6270;
+  --destaque: #374151;
+  --identidade: #374151;
+  --prata: #374151;
+  --tag-bg: #eceef2;
+  --btn-texto: #ffffff;
+  --btn-hover: #1f2937;
+  --btn-hover-texto: #ffffff;
+  --sombra: rgba(31, 35, 40, 0.12);
+  --filtro-menu: none;
+  --nav-rgb: 255, 255, 255;
+}
+/* ===== Logos ===== */
+.navbar-logo {
+  height: 42px;
+  width: auto;
+  display: block;
+}
+
+.footer-logo {
+  height: 80px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+/* ===== Base ===== */
+body {
+  font-family: var(--bs-body-font-family);
+  background-color: var(--bg);
+  color: var(--texto);
+  letter-spacing: -0.005em;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.text-primary {
+  color: var(--destaque) !important;
+}
+
+.text-secondary {
+  color: var(--texto-suave) !important;
+}
+
+.bg-white {
+  background-color: var(--bg) !important;
+}
+
+.bg-section {
+  background-color: var(--bg-alt) !important;
+}
+
+.footer-custom {
+  background-color: var(--bg);
+  border-top: 1px solid var(--borda);
+  color: var(--texto-suave);
+}
+
+.text-bg-light {
+  background-color: var(--bg-alt) !important;
+  color: var(--destaque) !important;
+  border-color: var(--borda) !important;
+}
+
+/* ===== Navbar ===== */
+.navbar-custom {
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, padding 0.3s ease;
+}
+
+/* Ao descer a página (classe adicionada pelo JavaScript) */
+.navbar-custom.navbar-scrolled {
+  background-color: rgba(var(--nav-rgb), 0.72);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border-bottom-color: var(--borda);
+  box-shadow: 0 8px 24px var(--sombra);
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+.navbar-toggler {
+  border-color: var(--borda);
+}
+
+.navbar-toggler-icon {
+  filter: var(--filtro-menu);
+}
+
+/* Cápsula com os links */
+.nav-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.3rem;
+  background-color: var(--card);
+  border: 1px solid var(--borda);
+  border-radius: 999px;
+}
+
+.nav-pill .nav-link {
+  color: var(--texto-suave);
+  font-weight: 500;
+  font-size: 0.92rem;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-pill .nav-link:hover {
+  color: var(--texto);
+  background-color: var(--tag-bg);
+}
+
+/* "Contato" como destaque */
+.nav-pill .nav-link.nav-cta {
+  background-color: var(--identidade);
+  color: var(--btn-texto);
+  margin-left: 0.25rem;
+}
+
+.nav-pill .nav-link.nav-cta:hover {
+  background-color: var(--btn-hover);
+  color: var(--btn-hover-texto);
+}
+
+/* Botão de tema redondo, só com ícone */
+.btn-tema-icon {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--borda);
+  background-color: var(--card);
+  color: var(--texto);
+  font-size: 1rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-tema-icon:hover {
+  background-color: var(--tag-bg);
+  color: var(--destaque);
+}
+
+/* No celular, o menu fica empilhado */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    padding-top: 0.75rem;
+  }
+
+  .nav-pill {
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: 1rem;
+    padding: 0.5rem;
+  }
+
+  .nav-pill .nav-link.nav-cta {
+    margin-left: 0;
+    text-align: center;
+  }
+}
+
+/* ===== Botões ===== */
+.btn {
+  border-radius: 0.5rem;
+  font-weight: 500;
+}
+
+.btn-primary {
+  --bs-btn-color: var(--btn-texto);
+  --bs-btn-bg: var(--identidade);
+  --bs-btn-border-color: var(--identidade);
+  --bs-btn-hover-color: var(--btn-hover-texto);
+  --bs-btn-hover-bg: var(--btn-hover);
+  --bs-btn-hover-border-color: var(--btn-hover);
+  --bs-btn-active-color: var(--btn-hover-texto);
+  --bs-btn-active-bg: var(--btn-hover);
+  --bs-btn-active-border-color: var(--btn-hover);
+}
+
+.btn-outline-dark {
+  --bs-btn-color: var(--texto);
+  --bs-btn-border-color: var(--texto-suave);
+  --bs-btn-hover-color: var(--bg);
+  --bs-btn-hover-bg: var(--texto);
+  --bs-btn-hover-border-color: var(--texto);
+}
+
+/* ===== Hero ===== */
+.hero {
+  background-color: var(--bg);
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  line-height: 1.1;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--destaque);
+  margin-right: 8px;
+}
+
+.hero-photo {
+  position: relative;
+  padding: 20px;
+}
+
+.hero-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--identidade);
+  border-radius: 1.5rem;
+}
+
+.hero-photo img {
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 30%;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px var(--sombra);
+  transform: translate(-8%, -5%);
+}
+
+@media (max-width: 991.98px) {
+  .hero-photo img {
+    transform: none;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+}
+
+/* ===== Ícones de tecnologias ===== */
+.tech-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 60px;
+}
+
+.tech-item i {
+  font-size: 2.25rem;
+  line-height: 1;
+  color: var(--destaque);
+  transition: transform 0.2s ease;
+}
+
+.tech-item:hover i {
+  transform: translateY(-3px);
+}
+
+.tech-item span {
+  font-size: 0.75rem;
+  color: var(--texto-suave);
+}
+
+/* ===== Títulos das seções ===== */
+.section-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--destaque);
+  margin-bottom: 0;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--texto);
+}
+
+.link-chumbo {
+  color: var(--destaque);
+  text-decoration: none;
+}
+
+.link-chumbo:hover {
+  color: var(--texto);
+}
+
+/* ===== Ícone quadrado ===== */
+.icon-box {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background-color: var(--tag-bg);
+  color: var(--destaque);
+  font-size: 1.25rem;
+}
+
+/* ===== Cards (sobre, tecnologias, projetos, contato) ===== */
+.info-card,
+.skill-card,
+.project-card,
+.contact-card {
+  background-color: var(--card);
+  border: 1px solid var(--borda);
+  border-radius: 1rem;
+}
+
+.info-label,
+.project-category {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+}
+
+.info-title {
+  font-weight: 600;
+  color: var(--texto);
+}
+
+.info-text,
+.skill-text,
+.project-text {
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+/* Tecnologias */
+.skill-card {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-card:hover {
+  border-color: var(--destaque);
+  box-shadow: 0 10px 25px var(--sombra);
+}
+
+.skill-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+/* Projetos */
+.project-card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--destaque);
+  box-shadow: 0 12px 28px var(--sombra);
+}
+
+.project-img {
+  aspect-ratio: 16 / 10;
+  background-color: var(--tag-bg);
+  border-bottom: 1px solid var(--borda);
+  overflow: hidden;
+}
+
+.project-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-img img {
+  transform: scale(1.04);
+}
+
+.project-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.project-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+  color: var(--texto);
+}
+
+.project-text {
+  margin-bottom: 1rem;
+}
+
+.tag {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.4rem;
+  background-color: var(--tag-bg);
+  color: var(--prata);
+}
+
+.project-link {
+  margin-top: auto;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--destaque);
+  text-decoration: none;
+}
+
+.project-link:hover {
+  color: var(--texto);
+}
+
+/* Contato */
+.contact-link {
+  color: var(--texto-suave);
+  text-decoration: none;
+}
+
+.contact-link:hover {
+  color: var(--destaque);
+}
