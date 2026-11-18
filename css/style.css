@@ -1,20 +1,19 @@
 /* ===== PALETAS =====
    Tema escuro é o padrão (:root).
-   Tema claro é ativado pelo atributo data-bs-theme="light" no <html>.
-   Para mudar uma cor, altere só aqui. */
+   Tema claro é ativado pelo atributo data-bs-theme="light" no <html>. */
 :root {
   --bs-body-font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   /* Tema escuro */
-  --bg: #171b22;            /* chumbo profundo, fundo principal */
-  --bg-alt: #222831;        /* grafite, seções alternadas */
-  --card: #222831;          /* grafite, cards */
-  --borda: #303946;         /* cinza ardósia, bordas */
-  --texto: #f1f3f5;         /* branco gelo, textos principais */
-  --texto-suave: #8f9baa;   /* cinza azulado, textos secundários */
-  --destaque: #82a6ca;      /* azul claro, links e hover */
-  --identidade: #5b83a8;    /* azul aço, botões */
-  --prata: #c5cbd3;         /* prata, tags */
+  --bg: #171b22;
+  --bg-alt: #222831;
+  --card: #222831;
+  --borda: #303946;
+  --texto: #f1f3f5;
+  --texto-suave: #8f9baa;
+  --destaque: #82a6ca;
+  --identidade: #5b83a8;
+  --prata: #c5cbd3;
   --tag-bg: #303946;
   --btn-texto: #ffffff;
   --btn-hover: #82a6ca;
@@ -24,7 +23,7 @@
   --nav-rgb: 23, 27, 34;
 }
 
-/* Tema claro (suas cores anteriores) */
+/* Tema claro */
 html[data-bs-theme="light"] {
   --bg: #ffffff;
   --bg-alt: #f5f6f8;
@@ -43,19 +42,12 @@ html[data-bs-theme="light"] {
   --filtro-menu: none;
   --nav-rgb: 255, 255, 255;
 }
-/* ===== Logos ===== */
-.navbar-logo {
-  height: 42px;
-  width: auto;
-  display: block;
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
 }
 
-.footer-logo {
-  height: 80px;
-  width: auto;
-  display: block;
-  margin: 0 auto;
-}
 /* ===== Base ===== */
 body {
   font-family: var(--bs-body-font-family);
@@ -86,16 +78,24 @@ h1, h2, h3, h4, h5 {
   background-color: var(--bg-alt) !important;
 }
 
-.footer-custom {
-  background-color: var(--bg);
-  border-top: 1px solid var(--borda);
-  color: var(--texto-suave);
-}
-
 .text-bg-light {
   background-color: var(--bg-alt) !important;
   color: var(--destaque) !important;
   border-color: var(--borda) !important;
+}
+
+/* ===== Logos ===== */
+.navbar-logo {
+  height: 42px;
+  width: auto;
+  display: block;
+}
+
+.footer-logo {
+  height: 80px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 /* ===== Navbar ===== */
@@ -118,12 +118,9 @@ h1, h2, h3, h4, h5 {
   padding-bottom: 0.6rem;
 }
 
+/* Ícone do menu hambúrguer */
 .navbar-toggler {
   border-color: var(--borda);
-}
-
-.navbar-toggler-icon {
-  filter: var(--filtro-menu);
 }
 
 .navbar-toggler-icon {
@@ -159,16 +156,18 @@ h1, h2, h3, h4, h5 {
   background-color: var(--tag-bg);
 }
 
-/* "Contato" como destaque */
+/* "Contato" começa com contorno, sem estar sempre ativo */
 .nav-pill .nav-link.nav-cta {
-  background-color: var(--identidade);
-  color: var(--btn-texto);
+  border: 1px solid var(--identidade);
+  color: var(--destaque);
   margin-left: 0.25rem;
 }
 
-.nav-pill .nav-link.nav-cta:hover {
-  background-color: var(--btn-hover);
-  color: var(--btn-hover-texto);
+/* Seção atual (marcada pelo JavaScript) */
+.nav-pill .nav-link.active {
+  background-color: var(--identidade);
+  color: var(--btn-texto);
+  border-color: var(--identidade);
 }
 
 /* Botão de tema redondo, só com ícone */
@@ -191,7 +190,7 @@ h1, h2, h3, h4, h5 {
   color: var(--destaque);
 }
 
-/* No celular */
+/* No celular, o menu fica empilhado */
 @media (max-width: 991.98px) {
   .navbar-collapse {
     padding-top: 0.75rem;
@@ -228,12 +227,17 @@ h1, h2, h3, h4, h5 {
   --bs-btn-active-border-color: var(--btn-hover);
 }
 
-.btn-outline-dark {
-  --bs-btn-color: var(--texto);
-  --bs-btn-border-color: var(--texto-suave);
-  --bs-btn-hover-color: var(--bg);
-  --bs-btn-hover-bg: var(--texto);
-  --bs-btn-hover-border-color: var(--texto);
+/* Botões sociais da hero */
+.btn-social {
+  background-color: var(--card);
+  border: 1px solid var(--borda);
+  color: var(--texto);
+}
+
+.btn-social:hover {
+  background-color: var(--tag-bg);
+  border-color: var(--destaque);
+  color: var(--destaque);
 }
 
 /* ===== Hero ===== */
@@ -290,37 +294,6 @@ h1, h2, h3, h4, h5 {
   }
 }
 
-/* ===== Ícones de tecnologias ===== */
-.tech-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.25rem;
-}
-
-.tech-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-  min-width: 60px;
-}
-
-.tech-item i {
-  font-size: 2.25rem;
-  line-height: 1;
-  color: var(--destaque);
-  transition: transform 0.2s ease;
-}
-
-.tech-item:hover i {
-  transform: translateY(-3px);
-}
-
-.tech-item span {
-  font-size: 0.75rem;
-  color: var(--texto-suave);
-}
-
 /* ===== Títulos das seções ===== */
 .section-eyebrow {
   font-size: 0.75rem;
@@ -361,7 +334,7 @@ h1, h2, h3, h4, h5 {
   font-size: 1.25rem;
 }
 
-/* ===== Cards (sobre, tecnologias, projetos, contato) ===== */
+/* ===== Cards ===== */
 .info-card,
 .skill-card,
 .project-card,
@@ -406,6 +379,36 @@ h1, h2, h3, h4, h5 {
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 0.25rem;
+}
+
+.tech-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 60px;
+}
+
+.tech-item i {
+  font-size: 2.25rem;
+  line-height: 1;
+  color: var(--destaque);
+  transition: transform 0.2s ease;
+}
+
+.tech-item:hover i {
+  transform: translateY(-3px);
+}
+
+.tech-item span {
+  font-size: 0.75rem;
+  color: var(--texto-suave);
 }
 
 /* Projetos */
@@ -482,7 +485,7 @@ h1, h2, h3, h4, h5 {
   color: var(--texto);
 }
 
-/* Contato */
+/* ===== Contato ===== */
 .contact-link {
   color: var(--texto-suave);
   text-decoration: none;
