@@ -494,3 +494,48 @@ h1, h2, h3, h4, h5 {
 .contact-link:hover {
   color: var(--destaque);
 }
+
+/* ===== Cards que viram (Sobre) ===== */
+.flip-card {
+  perspective: 1000px;
+  height: 130px;
+  outline: none;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease;
+  transform-style: preserve-3d;
+}
+
+/* Vira ao passar o mouse ou tocar (foco) no card */
+.flip-card:hover .flip-card-inner,
+.flip-card:focus .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background-color: var(--card);
+  border: 1px solid var(--borda);
+  border-radius: 1rem;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+  border-color: var(--destaque);
+}
+
+.flip-card:hover .flip-face,
+.flip-card:focus .flip-face {
+  box-shadow: 0 10px 25px var(--sombra);
+}
