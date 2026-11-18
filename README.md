@@ -2,7 +2,7 @@
 
 Site pessoal para apresentar meu perfil, minha formação, as tecnologias que estou estudando e alguns projetos que já fiz.
 
-🔗 **Acesse o site:** https://daniel-filho-hub.github.io/Portifolio/
+🔗 **Acesse o site:** https://daniel-filho-hub.github.io/Portfolio
 
 ---
 
