@@ -1,31 +1,175 @@
-// ===== TEMA CLARO / ESCURO =====
+// ===== TEXTOS EM PORTUGUÊS E INGLÊS =====
+const textos = {
+  pt: {
+    navSobre: 'Sobre',
+    navTecnologias: 'Tecnologias',
+    navProjetos: 'Projetos',
+    navContato: 'Contato',
+    badge: 'ESTUDANTE DE ENGENHARIA DE SOFTWARE',
+    heroOla: 'Olá, eu sou',
+    heroLead: 'Tenho interesse em desenvolvimento de software e em criar soluções digitais que transformam ideias em experiências úteis.',
+    heroTexto: 'Estou aprofundando meus conhecimentos em programação, desenvolvimento web e banco de dados, sempre aprendendo na prática.',
+    heroBotao: 'Ver meus projetos',
+    heroEmail: 'E-mail',
+    heroLegenda: 'Aprendizado contínuo, um projeto de cada vez.',
+    sobreEyebrow: 'Um pouco sobre mim',
+    sobreTitulo: 'Aprendizado com propósito.',
+    sobreP1: 'Sou estudante de Engenharia de Software e estou construindo minha trajetória na área de tecnologia, com foco no desenvolvimento de software. Gosto de aprender conceitos, colocá-los em prática e entender como transformar necessidades em soluções.',
+    sobreP2: 'Minha experiência como professor de inglês também contribuiu para desenvolver comunicação, organização e didática, habilidades que considero importantes para colaborar e compartilhar ideias em equipe.',
+    cardFormLabel: 'Formação',
+    cardFormTitulo: 'Engenharia de Software',
+    cardFormTexto: 'UDF · Brasília, Brasil',
+    cardFormVersoLabel: 'Mais sobre a formação',
+    cardFormVersoTitulo: 'Graduação em andamento',
+    cardFormVersoTexto: 'Foco em desenvolvimento de software, lógica de programação e banco de dados.',
+    cardExpLabel: 'Experiência',
+    cardExpTitulo: 'Ensino de inglês (ANGLIFY | 2024–2026)',
+    cardExpTexto: 'Comunicação, didática e organização.',
+    cardExpVersoLabel: 'Mais sobre a experiência',
+    cardExpVersoTitulo: 'Planejamento e didática',
+    cardExpVersoTexto: 'Planejamento de aulas, adaptação ao nível dos alunos e acompanhamento da evolução de cada um.',
+    btnCurriculo: 'Baixar currículo',
+    tecEyebrow: 'Ferramentas e conhecimentos',
+    tecTitulo: 'Tecnologias que estou explorando.',
+    tecSub: 'Conhecimentos em desenvolvimento por meio dos estudos e de projetos práticos.',
+    tecLingTitulo: 'Linguagens',
+    tecLingTexto: 'Lógica de programação',
+    tecFrontTitulo: 'Front-end',
+    tecFrontTexto: 'Interfaces responsivas',
+    tecDbTitulo: 'Banco de dados',
+    tecDbTexto: 'SQL · Fundamentos e prática',
+    tecFerrTitulo: 'Ferramentas',
+    tecFerrTexto: 'Versionamento e publicação',
+    projEyebrow: 'Portfólio',
+    projTitulo: 'Projetos em destaque.',
+    projSub: 'Experimentos e trabalhos que fazem parte da minha evolução.',
+    projVerGithub: 'Ver GitHub completo',
+    projVer: 'Ver no GitHub',
+    proj1Cat: '01 · Desenvolvimento web',
+    proj1Texto: 'Página web desenvolvida para praticar estruturação de um site de notícias, estilos e construção de interfaces responsivas.',
+    proj2Cat: '02 · Interface e web',
+    proj2Texto: 'Projeto de interface para um site temático de Halloween, com foco em Bootstrap e identidade visual.',
+    proj3Cat: '03 · Desenvolvimento web',
+    proj3Texto: 'Site temático sobre pesca esportiva, explorando organização de conteúdo, navegação e apresentação visual.',
+    contEyebrow: 'Contato',
+    contTitulo: 'Vamos conversar?',
+    contTexto: 'Estou aberto a oportunidades de estágio, projetos e conexões na área de tecnologia.',
+    contBotao: 'Enviar um e-mail',
+    temaClaro: 'Mudar para tema claro',
+    temaEscuro: 'Mudar para tema escuro'
+  },
+  en: {
+    navSobre: 'About',
+    navTecnologias: 'Technologies',
+    navProjetos: 'Projects',
+    navContato: 'Contact',
+    badge: 'SOFTWARE ENGINEERING STUDENT',
+    heroOla: "Hi, I'm",
+    heroLead: 'I am interested in software development and in building digital solutions that turn ideas into useful experiences.',
+    heroTexto: 'I am deepening my knowledge of programming, web development and databases, always learning by doing.',
+    heroBotao: 'See my projects',
+    heroEmail: 'Email',
+    heroLegenda: 'Continuous learning, one project at a time.',
+    sobreEyebrow: 'A bit about me',
+    sobreTitulo: 'Learning with purpose.',
+    sobreP1: 'I am a software engineering student building my path in technology, with a focus on software development. I enjoy learning concepts, putting them into practice and figuring out how to turn needs into solutions.',
+    sobreP2: 'My experience as an English teacher also helped me develop communication, organization and teaching skills, which I consider important for collaborating and sharing ideas in a team.',
+    cardFormLabel: 'Education',
+    cardFormTitulo: 'Software Engineering',
+    cardFormTexto: 'UDF · Brasília, Brazil',
+    cardFormVersoLabel: 'More about my education',
+    cardFormVersoTitulo: 'Undergraduate degree in progress',
+    cardFormVersoTexto: 'Focus on software development, programming logic and databases.',
+    cardExpLabel: 'Experience',
+    cardExpTitulo: 'English teacher (ANGLIFY | 2024–2026)',
+    cardExpTexto: 'Communication, teaching and organization.',
+    cardExpVersoLabel: 'More about my experience',
+    cardExpVersoTitulo: 'Planning and teaching',
+    cardExpVersoTexto: "Lesson planning, adapting explanations to each student's level and tracking their progress.",
+    btnCurriculo: 'Download CV',
+    tecEyebrow: 'Tools and knowledge',
+    tecTitulo: "Technologies I'm exploring.",
+    tecSub: 'Skills in development through my studies and hands-on projects.',
+    tecLingTitulo: 'Languages',
+    tecLingTexto: 'Programming logic',
+    tecFrontTitulo: 'Front-end',
+    tecFrontTexto: 'Responsive interfaces',
+    tecDbTitulo: 'Databases',
+    tecDbTexto: 'SQL · Fundamentals and practice',
+    tecFerrTitulo: 'Tools',
+    tecFerrTexto: 'Version control and publishing',
+    projEyebrow: 'Portfolio',
+    projTitulo: 'Featured projects.',
+    projSub: 'Experiments and work that are part of my growth.',
+    projVerGithub: 'See full GitHub',
+    projVer: 'View on GitHub',
+    proj1Cat: '01 · Web development',
+    proj1Texto: 'A web page built to practice structuring a news website, styling and building responsive interfaces.',
+    proj2Cat: '02 · Interface and web',
+    proj2Texto: 'Interface project for a Halloween-themed website, focused on Bootstrap and visual identity.',
+    proj3Cat: '03 · Web development',
+    proj3Texto: 'A themed website about sport fishing, exploring content organization, navigation and visual presentation.',
+    contEyebrow: 'Contact',
+    contTitulo: "Let's talk?",
+    contTexto: 'I am open to internship opportunities, projects and connections in the tech field.',
+    contBotao: 'Send an email',
+    temaClaro: 'Switch to light theme',
+    temaEscuro: 'Switch to dark theme'
+  }
+};
+
+// ===== ELEMENTOS =====
 const html = document.documentElement;
 const btnTema = document.getElementById('btnTema');
+const btnIdioma = document.getElementById('btnIdioma');
 const icone = btnTema.querySelector('i');
+const nav = document.getElementById('navPrincipal');
 
+let idiomaAtual = localStorage.getItem('idioma') || 'pt';
+
+// ===== TEMA CLARO / ESCURO =====
 function aplicarTema(tema) {
   html.setAttribute('data-bs-theme', tema);
   localStorage.setItem('tema', tema);
   icone.className = tema === 'dark' ? 'bi bi-sun' : 'bi bi-moon-stars';
-  btnTema.title = tema === 'dark' ? 'Mudar para tema claro' : 'Mudar para tema escuro';
+  btnTema.title = tema === 'dark' ? textos[idiomaAtual].temaClaro : textos[idiomaAtual].temaEscuro;
 }
-
-aplicarTema(localStorage.getItem('tema') || 'dark');
 
 btnTema.addEventListener('click', () => {
   const atual = html.getAttribute('data-bs-theme');
   aplicarTema(atual === 'dark' ? 'light' : 'dark');
 });
 
-// ===== NAVBAR TRANSLÚCIDA AO ROLAR =====
-const nav = document.getElementById('navPrincipal');
+// ===== IDIOMA (PT / EN) =====
+function aplicarIdioma(idioma) {
+  idiomaAtual = idioma;
+  localStorage.setItem('idioma', idioma);
+  html.setAttribute('lang', idioma === 'pt' ? 'pt-BR' : 'en');
+
+  document.querySelectorAll('[data-i18n]').forEach((elemento) => {
+    const chave = elemento.getAttribute('data-i18n');
+    if (textos[idioma][chave]) {
+      elemento.textContent = textos[idioma][chave];
+    }
+  });
+
+  // O botão mostra o idioma para onde a troca vai levar
+  btnIdioma.textContent = idioma === 'pt' ? 'EN' : 'PT';
+  btnIdioma.title = idioma === 'pt' ? 'Switch to English' : 'Mudar para português';
+
+  // Atualiza o título do botão de tema no novo idioma
+  aplicarTema(html.getAttribute('data-bs-theme'));
+}
+
+btnIdioma.addEventListener('click', () => {
+  aplicarIdioma(idiomaAtual === 'pt' ? 'en' : 'pt');
+});
 
 function atualizarNavbar() {
   nav.classList.toggle('navbar-scrolled', window.scrollY > 40);
 }
 
 window.addEventListener('scroll', atualizarNavbar, { passive: true });
-atualizarNavbar();
 
 // ===== MENU ACOMPANHA A SEÇÃO VISÍVEL =====
 const linksMenu = document.querySelectorAll('#navPrincipal .nav-link');
@@ -45,3 +189,8 @@ const observador = new IntersectionObserver((entradas) => {
 });
 
 secoes.forEach((secao) => observador.observe(secao));
+
+// ===== INICIALIZAÇÃO =====
+aplicarTema(localStorage.getItem('tema') || 'dark');
+aplicarIdioma(idiomaAtual);
+atualizarNavbar();

@@ -566,3 +566,23 @@ body {
 .flip-card:focus .flip-face {
   box-shadow: 0 10px 25px var(--sombra);
 }
+
+/* Botão de idioma (PT / EN) */
+.btn-idioma {
+  height: 40px;
+  min-width: 40px;
+  padding: 0 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--borda);
+  background-color: var(--card);
+  color: var(--texto);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-idioma:hover {
+  background-color: var(--tag-bg);
+  color: var(--destaque);
+}
