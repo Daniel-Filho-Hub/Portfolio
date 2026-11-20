@@ -91,11 +91,117 @@ h1, h2, h3, h4, h5 {
   display: block;
 }
 
+/* ===== Rodapé ===== */
 .footer-logo {
-  height: 80px;
+  height: 64px;
   width: auto;
   display: block;
   margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .footer-logo {
+    margin: 0;
+  }
+}
+
+.site-footer {
+  background-color: var(--bg);
+  border-top: 1px solid var(--borda);
+}
+
+.footer-text {
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+  max-width: 340px;
+}
+
+.footer-title {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  margin-bottom: 0.9rem;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--texto);
+  text-decoration: none;
+  font-size: 0.92rem;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--destaque);
+}
+
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.footer-social a {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--borda);
+  background-color: var(--card);
+  color: var(--texto);
+  font-size: 1.05rem;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-social a:hover {
+  color: var(--destaque);
+  border-color: var(--destaque);
+  transform: translateY(-2px);
+}
+
+.footer-email {
+  display: inline-block;
+  margin-top: 0.9rem;
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-email:hover {
+  color: var(--destaque);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--borda);
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+.footer-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--texto-suave);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-top:hover {
+  color: var(--destaque);
 }
 
 /* ===== Navbar ===== */
