@@ -692,3 +692,152 @@ body {
   background-color: var(--tag-bg);
   color: var(--destaque);
 }
+
+/* ===== Barra de progresso da formação ===== */
+.progress-box {
+  background-color: var(--card);
+  border: 1px solid var(--borda);
+  border-radius: 1rem;
+  padding: 1.1rem 1.25rem;
+}
+
+.progress-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  margin: 0;
+}
+
+.progress-percent {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--texto);
+  font-variant-numeric: tabular-nums;
+}
+
+.progress-track {
+  height: 14px;
+  border-radius: 999px;
+  background-color: var(--tag-bg);
+  border: 1px solid var(--borda);
+  overflow: hidden;
+}
+
+/* Barra com listras que se movem, como uma instalação */
+.progress-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  background-color: var(--identidade);
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.18) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0.18) 75%,
+    transparent 75%
+  );
+  background-size: 1rem 1rem;
+  transition: width 1.6s ease;
+  animation: listras-progresso 0.8s linear infinite;
+}
+
+/* Para de listrar quando a formação está concluída */
+.progress-box.concluido .progress-fill {
+  animation: none;
+}
+
+@keyframes listras-progresso {
+  from { background-position: 0 0; }
+  to   { background-position: 1rem 0; }
+}
+
+.progress-status {
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+/* Pessoas com "reduzir movimento" ativado veem a barra sem listras animadas */
+@media (prefers-reduced-motion: reduce) {
+  .progress-fill {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* ===== Sobre ===== */
+.sobre-header {
+  max-width: none; /* usa a largura total do container */
+}
+
+.sobre-lead {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--texto);
+}
+
+.sobre-lead {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--texto);
+}
+
+/* Cards da seção Sobre com a mesma altura e espaçamento interno */
+.sobre-cards .flip-card,
+.sobre-cards .progress-box {
+  height: 220px;
+}
+
+.sobre-cards .flip-face,
+.sobre-cards .progress-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.5rem;
+  border-radius: 1.1rem;
+}
+
+.sobre-cards .icon-box {
+  width: 48px;
+  height: 48px;
+  font-size: 1.35rem;
+  border-radius: 0.9rem;
+}
+
+.sobre-cards .flip-text {
+  width: 100%;
+}
+
+.sobre-cards .info-title {
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.sobre-cards .info-text {
+  font-size: 0.9rem;
+}
+
+/* Card de progresso */
+.sobre-cards .progress-box {
+  background-color: var(--card);
+  border: 1px solid var(--borda);
+}
+
+.sobre-cards .progress-info {
+  width: 100%;
+}
+
+.sobre-cards .progress-percent {
+  font-size: 1.75rem;
+}
+
+.sobre-cards .progress-track {
+  margin-top: 0.25rem;
+}

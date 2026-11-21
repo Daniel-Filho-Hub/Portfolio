@@ -29,6 +29,10 @@ const textos = {
     cardExpVersoTitulo: 'Planejamento e didática',
     cardExpVersoTexto: 'Planejamento de aulas, adaptação ao nível dos alunos e acompanhamento da evolução de cada um.',
     btnCurriculo: 'Baixar currículo',
+    progLabel: 'Progresso da graduação',
+    progCarregando: 'Carregando módulos...',
+    progAndamento: 'Em andamento',
+    progConcluido: 'Formação concluída',
     tecEyebrow: 'Ferramentas e conhecimentos',
     tecTitulo: 'Tecnologias que estou explorando.',
     tecSub: 'Conhecimentos em desenvolvimento por meio dos estudos e de projetos práticos.',
@@ -56,7 +60,12 @@ const textos = {
     contTexto: 'Estou aberto a oportunidades de estágio, projetos e conexões na área de tecnologia.',
     contBotao: 'Enviar um e-mail',
     temaClaro: 'Mudar para tema claro',
-    temaEscuro: 'Mudar para tema escuro'
+    temaEscuro: 'Mudar para tema escuro',
+    footerFrase: 'Construindo soluções digitais, uma linha de código por vez.',
+    footerNavTitulo: 'Navegação',
+    footerContatoTitulo: 'Contato',
+    footerDireitos: '© 2026 Daniel Filho. Todos os direitos reservados.',
+    footerTopo: 'Voltar ao topo'
   },
   en: {
     navSobre: 'About',
@@ -87,6 +96,10 @@ const textos = {
     cardExpVersoTitulo: 'Planning and teaching',
     cardExpVersoTexto: "Lesson planning, adapting explanations to each student's level and tracking their progress.",
     btnCurriculo: 'Download CV',
+    progLabel: 'Degree progress',
+    progCarregando: 'Loading modules...',
+    progAndamento: 'In progress',
+    progConcluido: 'Degree completed',
     tecEyebrow: 'Tools and knowledge',
     tecTitulo: "Technologies I'm exploring.",
     tecSub: 'Skills in development through my studies and hands-on projects.',
@@ -114,7 +127,12 @@ const textos = {
     contTexto: 'I am open to internship opportunities, projects and connections in the tech field.',
     contBotao: 'Send an email',
     temaClaro: 'Switch to light theme',
-    temaEscuro: 'Switch to dark theme'
+    temaEscuro: 'Switch to dark theme',
+    footerFrase: 'Building digital solutions, one line of code at a time.',
+    footerNavTitulo: 'Navigation',
+    footerContatoTitulo: 'Contact',
+    footerDireitos: '© 2026 Daniel Filho. All rights reserved.',
+    footerTopo: 'Back to top'
   }
 };
 
@@ -165,6 +183,7 @@ btnIdioma.addEventListener('click', () => {
   aplicarIdioma(idiomaAtual === 'pt' ? 'en' : 'pt');
 });
 
+// ===== NAVBAR TRANSLÚCIDA AO ROLAR =====
 function atualizarNavbar() {
   nav.classList.toggle('navbar-scrolled', window.scrollY > 40);
 }
@@ -189,6 +208,58 @@ const observador = new IntersectionObserver((entradas) => {
 });
 
 secoes.forEach((secao) => observador.observe(secao));
+
+// ===== BARRA DE PROGRESSO DA FORMAÇÃO =====
+const boxProgresso = document.getElementById('progressoFormacao');
+const numeroProgresso = boxProgresso.querySelector('.progress-numero');
+const preenchimento = boxProgresso.querySelector('.progress-fill');
+const statusProgresso = boxProgresso.querySelector('.progress-status');
+const metaProgresso = parseInt(boxProgresso.dataset.progresso, 10);
+let animacaoTerminou = false;
+
+function atualizarStatusProgresso() {
+  const t = textos[idiomaAtual];
+  if (!animacaoTerminou) {
+    statusProgresso.textContent = t.progCarregando;
+  } else {
+    statusProgresso.textContent = metaProgresso >= 100 ? t.progConcluido : t.progAndamento;
+  }
+}
+
+function animarProgresso() {
+  preenchimento.style.width = metaProgresso + '%';
+  const duracao = 1600;
+  const inicio = performance.now();
+
+  function passo(agora) {
+    const fracao = Math.min((agora - inicio) / duracao, 1);
+    numeroProgresso.textContent = Math.round(fracao * metaProgresso);
+
+    if (fracao < 1) {
+      requestAnimationFrame(passo);
+    } else {
+      animacaoTerminou = true;
+      if (metaProgresso >= 100) boxProgresso.classList.add('concluido');
+      atualizarStatusProgresso();
+    }
+  }
+
+  requestAnimationFrame(passo);
+}
+
+// A animação só começa quando pelo menos metade da barra aparece na tela
+const observadorProgresso = new IntersectionObserver((entradas, obs) => {
+  if (entradas[0].isIntersecting) {
+    animarProgresso();
+    obs.disconnect();
+  }
+}, { threshold: 0.5 });
+
+observadorProgresso.observe(boxProgresso);
+
+// Atualiza o texto de status quando o idioma muda
+btnIdioma.addEventListener('click', atualizarStatusProgresso);
+atualizarStatusProgresso();
 
 // ===== INICIALIZAÇÃO =====
 aplicarTema(localStorage.getItem('tema') || 'dark');
