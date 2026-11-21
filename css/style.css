@@ -841,3 +841,19 @@ body {
 .sobre-cards .progress-track {
   margin-top: 0.25rem;
 }
+
+/* ===== Efeito de digitação nos títulos ===== */
+.section-title.digitando::after {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 0.85em;
+  margin-left: 6px;
+  vertical-align: -0.05em;
+  background-color: var(--destaque);
+  animation: piscar-cursor 0.7s steps(1) infinite;
+}
+
+@keyframes piscar-cursor {
+  50% { opacity: 0; }
+}

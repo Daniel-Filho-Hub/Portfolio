@@ -7,6 +7,7 @@ const textos = {
     navContato: 'Contato',
     badge: 'ESTUDANTE DE ENGENHARIA DE SOFTWARE',
     heroOla: 'Olá, eu sou',
+    heroNome: 'Daniel Filho!',
     heroLead: 'Tenho interesse em desenvolvimento de software e em criar soluções digitais que transformam ideias em experiências úteis.',
     heroTexto: 'Estou aprofundando meus conhecimentos em programação, desenvolvimento web e banco de dados, sempre aprendendo na prática.',
     heroBotao: 'Ver meus projetos',
@@ -74,6 +75,7 @@ const textos = {
     navContato: 'Contact',
     badge: 'SOFTWARE ENGINEERING STUDENT',
     heroOla: "Hi, I'm",
+    heroNome: 'Daniel Filho!',
     heroLead: 'I am interested in software development and in building digital solutions that turn ideas into useful experiences.',
     heroTexto: 'I am deepening my knowledge of programming, web development and databases, always learning by doing.',
     heroBotao: 'See my projects',
@@ -158,8 +160,50 @@ btnTema.addEventListener('click', () => {
   aplicarTema(atual === 'dark' ? 'light' : 'dark');
 });
 
+// ===== EFEITO DE DIGITAÇÃO =====
+const velocidadeDigitacao = 55; // milissegundos por letra (diminua para mais rápido)
+const reduzirMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const timersDigitacao = new Set();
+
+// Para qualquer digitação em andamento (usado ao trocar de idioma)
+function pararDigitacao() {
+  timersDigitacao.forEach((timer) => clearInterval(timer));
+  timersDigitacao.clear();
+  document.querySelectorAll('.digitando').forEach((el) => el.classList.remove('digitando'));
+}
+
+// Digita o texto dentro do elemento. Ao terminar, chama "aoTerminar" (se houver)
+function digitarTexto(el, texto, aoTerminar) {
+  if (reduzirMovimento) {
+    el.textContent = texto;
+    if (aoTerminar) aoTerminar();
+    return;
+  }
+
+  const letras = [...texto];
+  el.textContent = '';
+  el.classList.add('digitando');
+
+  let i = 0;
+  const timer = setInterval(() => {
+    i++;
+    el.textContent = letras.slice(0, i).join('');
+
+    if (i >= letras.length) {
+      clearInterval(timer);
+      timersDigitacao.delete(timer);
+      el.classList.remove('digitando');
+      if (aoTerminar) aoTerminar();
+    }
+  }, velocidadeDigitacao);
+
+  timersDigitacao.add(timer);
+}
+
 // ===== IDIOMA (PT / EN) =====
 function aplicarIdioma(idioma) {
+  pararDigitacao();
+
   idiomaAtual = idioma;
   localStorage.setItem('idioma', idioma);
   html.setAttribute('lang', idioma === 'pt' ? 'pt-BR' : 'en');
@@ -261,7 +305,44 @@ observadorProgresso.observe(boxProgresso);
 btnIdioma.addEventListener('click', atualizarStatusProgresso);
 atualizarStatusProgresso();
 
+// ===== HERO: "OLÁ, EU SOU" E DEPOIS O NOME =====
+const tituloOla = document.querySelector('.hero .section-title[data-i18n="heroOla"]');
+const tituloNome = document.querySelector('.hero .section-title[data-i18n="heroNome"]');
+
+function digitarHero() {
+  if (!tituloOla || !tituloNome) return;
+  const t = textos[idiomaAtual];
+
+  // Limpa os dois títulos antes de começar, para o nome não aparecer antes da hora
+  tituloOla.textContent = '';
+  tituloNome.textContent = '';
+
+  digitarTexto(tituloOla, t.heroOla, () => {
+    digitarTexto(tituloNome, t.heroNome);
+  });
+}
+
+// ===== DEMAIS TÍTULOS: DIGITAM AO APARECER NA TELA =====
+const titulosSecao = [...document.querySelectorAll('.section-title')]
+  .filter((titulo) => !titulo.closest('.hero'));
+
+const observadorTitulos = new IntersectionObserver((entradas) => {
+  entradas.forEach((entrada) => {
+    if (entrada.isIntersecting) {
+      const titulo = entrada.target;
+      if (titulo.dataset.digitado !== 'sim') {
+        titulo.dataset.digitado = 'sim';
+        digitarTexto(titulo, titulo.textContent.trim());
+      }
+      observadorTitulos.unobserve(titulo);
+    }
+  });
+}, { threshold: 0.6 });
+
+titulosSecao.forEach((titulo) => observadorTitulos.observe(titulo));
+
 // ===== INICIALIZAÇÃO =====
 aplicarTema(localStorage.getItem('tema') || 'dark');
 aplicarIdioma(idiomaAtual);
 atualizarNavbar();
+digitarHero();
